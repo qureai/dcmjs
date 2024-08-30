@@ -281,7 +281,11 @@ function generateToolState(
     const dicomData = DicomMessage.readFile(arrayBuffer);
     const dataset = DicomMetaDictionary.naturalizeDataset(dicomData.dict);
     dataset._meta = DicomMetaDictionary.namifyDataset(dicomData.meta);
+
+    console.log({ dataset });
+
     const multiframe = Normalizer.normalizeToDataset([dataset]);
+    console.log({ multiframe });
 
     const imagePlaneModule = metadataProvider.get(
         "imagePlaneModule",
@@ -637,7 +641,7 @@ function findReferenceSourceImageId(
 
     let frameSourceImageSequence = undefined;
     if (SourceImageSequence && SourceImageSequence.length !== 0) {
-        frameSourceImageSequence = SourceImageSequence[frameSegment];
+        frameSourceImageSequence = SourceImageSequence[0];
     } else if (PerFrameFunctionalGroup.DerivationImageSequence) {
         let DerivationImageSequence =
             PerFrameFunctionalGroup.DerivationImageSequence;
@@ -752,7 +756,7 @@ function checkSEGsOverlapping(
 
         if (!imageId) {
             console.warn(
-                "Image not present in stack, can't import frame : " + i + "."
+                "Image not present in stack, can't import frame : " + "."
             );
             continue;
         }
