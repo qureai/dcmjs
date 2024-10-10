@@ -640,9 +640,10 @@ function findReferenceSourceImageId(
     }
 
     let frameSourceImageSequence = undefined;
-    if (SourceImageSequence && SourceImageSequence.length !== 0) {
-        frameSourceImageSequence = SourceImageSequence[0];
-    } else if (PerFrameFunctionalGroup.DerivationImageSequence) {
+    // if (SourceImageSequence && SourceImageSequence.length !== 0) {
+    //     frameSourceImageSequence = SourceImageSequence[frameSegment];
+    // } else
+    if (PerFrameFunctionalGroup.DerivationImageSequence) {
         let DerivationImageSequence =
             PerFrameFunctionalGroup.DerivationImageSequence;
         if (Array.isArray(DerivationImageSequence)) {
